@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126565767-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-126565767-3');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETcrop</title>
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top navigation bar-->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+           <label class="btn btn-primary" id="camera-btn">Load Image</label>
+           <a class="modal-trigger btn btn-primary" href="#modal-table" id="data-table-btn">Recent</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="modal-trigger" href="#modal-about">About</a></li>
+                <li><a class="modal-trigger" href="#modal-instructions">Instructions</a></li>
+                <li><a href="https://github.com/andres-patrignani/etcrop">Github</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Side navigation bar in small screens-->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a class="modal-trigger" href="#modal-about">About</a></li>
+        <li><a class="modal-trigger" href="#modal-instructions">Instructions</a></li>
+        <li><a href="https://github.com/andres-patrignani/etcrop">Github</a></li>
+    </ul>
+
+    <div class="container" class="responsive-table" id="info">
+        <div class="col s12 m12 l6 offset-l2">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Date: <span id="date-value">...</span></td>
+                    <td>Time: <span id="time-value">...</span></td>
+                    <td>Latitude: <span id="latitude-value">...</span></td>
+                    <td>Longitude: <span id="longitude-value">...</span></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- Landing -->
+    <div class="container" id="landing">
+        <div class="col s12 m12 l6 offset-l2" >
+            <img id=landing-image src="images/etcrop_logo.png">
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="container" id="dashboard" style="display: none;">
+        <div class="row">
+            <div class="col s6 m6 l4 offset-l2">
+                <p class="dashboard-label">Canopy cover (%)</p>
+                <h1 class="dashboard-value" id="canopy-cover-value"></h1>
+            </div>
+            <div class="col s6 m6 l4">
+                <p class="dashboard-label">Crop coefficient</p>
+                <h1 class="dashboard-value" id="crop-coefficient-value"></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s6 m6 l4 offset-l2">
+                <p class="dashboard-label">ETref (mm/day)</p>
+                <h1 class="dashboard-value" id="etref-value"></h1>
+            </div>
+            <div class="col s6 m6 l4">
+                <p class="dashboard-label">ETcrop (mm/day)</p>
+                <h1 class="dashboard-value" id="etcrop-value"></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l8 offset-l2" id="original-image" style="margin-top: 10px;">
+            </div>
+            <div class="col s12 m12 l8 offset-l2" id="classified-image" style="margin-top: 10px;">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- About Modal -->
+    <div id="modal-about" class="modal">
+        <div class="modal-content">
+        <h4>About</h4>
+        <p>
+            <i>ETcrop</i> is a simple application for estimating the evapotranspiration demand of common agricultural crops. 
+            The application was develop in an effort to help water managers and producers to quickly estimate the water needs of
+            irrigated crops.
+
+            <h5>How it works</h5>
+            Crop evapotranspiration is estimated as the product between daily reference evapotranspiration 
+            and a crop coefficient. Reference evapotranspiration is computed using a mass-transfer model and the
+            crop coefficient is approximated using green canopy cover. Recent research studies are consistently showing
+             that canopy cover can be effectively used as a proxy to track crop growth and crop coefficients.
+
+            <h5>References</h5>
+            The <i>ETcrop</i> web-app was built on concepts described in the following peer-reviewed studies:
+
+            <ul>
+                <li>Patrignani, A. and Ochsner, T.E., 2015. Canopeo: A powerful new tool for measuring fractional green canopy cover. Agronomy Journal, 107(6), pp.2312-2320.</li>
+                <br/>
+                <li>Trout, T.J. and DeJonge, K.C., 2018. Crop water use and crop coefficients of maize in the great plains. Journal of Irrigation and Drainage Engineering, 144(6), p.04018009.</li>
+                <br/>                
+                <li>Muhammad, M.K.I., Nashwan, M.S., Shahid, S., Ismail, T.B., Song, Y.H. and Chung, E.S., 2019. Evaluation of empirical reference evapotranspiration models using compromise programming: a case study of Peninsular Malaysia. Sustainability, 11(16), p.4267.</li>
+                <br/>               
+                <li>Dalton, J., 1802. Experimental essays on the constitution of mixed gases. Manchester Literary and Philosophical Society Memo, 5, pp.535-602.</li>
+            </ul>
+        </p>
+        <p style="color: dimgrey;">Copyright Andres Patrignani - 2020</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Intructions Modal -->
+    <div id="modal-instructions" class="modal">
+        <div class="modal-content">
+            <h4>Instructions</h4>
+            <div>
+                Using <i>ETcrop</i> is fairly simple: 
+                <ol>
+                    <li>
+                        <b>Step 1: </b>Just wait a second or two until the web-app has fully loaded the weather information for your location.
+                    </li>
+                    </br>
+                    <li>
+                        <b>Step 2: </b>Take a downward-facing image of the crop. Make sure you keep the camera lens at least 2 or 3 feet from the top of the canopy. 
+                    </li>
+                    </br>
+                    <li>
+                        <b>Step 3: </b>The web-app will automatically compute the reference evapotranspiration, green canopy cover, crop coefficient, and crop evapotranspiration.
+                    </li>
+                </ol>
+            </div>
+            <div>
+                The resulting crop evapotranspiration in mm/day gives you an estimate of the current crop water needs. 
+                The ETcrop value can be used to assist you with irrigation . To provide you with more information <i>ETcrop</i> also reports the date, time, and geographic coordinates of each picture.
+                The accuracy of the location depends on the GPS onboard of your mobile device.
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+     <!-- History Table-->
+     <div id="modal-table" class="modal">
+        <div class="modal-content">
+            <table id="data-table"></table>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <script src="js/p5/p5.min.js"></script>
+    <script src="js/p5geolocation/p5.geolocation.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/etcrop_v1.0.js"></script>
+    <script>
+        //Sidenav
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {'edge':'right'});
+        });
+
+        // Images
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.materialboxed');
+            var instances = M.Materialbox.init(elems);
+        });
+
+        // Modal
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+        });
+    </script>
+</body>
+</html>

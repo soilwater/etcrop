@@ -1,2 +1,2 @@
 # etcrop
-A tool for estimating crop evapotranspiration based on canopy cover
+Web-app to quantify daily crop water demand using digital images
